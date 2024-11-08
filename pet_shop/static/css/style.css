@@ -3927,7 +3927,7 @@ input:focus {
 
 /* line 24, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_h1-hero.scss */
 .slider-height2 {
-  min-height: 300px;
+  min-height: 150px;
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -13164,3 +13164,12 @@ input:focus {
 }
 
 /*# sourceMappingURL=style.css.map */
+
+.centered-image {
+  max-width: 100%; /* Изображение не будет шире своего контейнера */
+  max-height: 100%; /* Установите максимальную высоту, чтобы изображение не растягивалось слишком сильно */
+  width: auto; /* Сохраняет исходное соотношение сторон */
+  height: auto; /* Сохраняет исходное соотношение сторон */
+  display: block; /* Для корректного центрирования */
+  margin: 0 auto; /* Центрирует изображение горизонтально */
+}

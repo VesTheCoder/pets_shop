@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+from .models import Product
 
 # Create your views here.
 
@@ -26,5 +27,6 @@ def login(request):
 def product_list(request):
     return render(request, 'product_list/product_list.html')
 
-def single_product(request):
-    return render(request, 'single-product/single-product.html')
+def single_product(request, slug):
+    product = get_object_or_404(Product, slug=slug)
+    return render(request, 'single-product/single-product.html', {'product': product})

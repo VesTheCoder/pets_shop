@@ -1,20 +1,24 @@
 from django.contrib import admin
-from .models import Category, AnimalType, Product, Review, Cart, CartItem, Order, OrderItem, Subscription, ShopContact
+from .models import Category, AnimalType, Product, Review, Cart, CartItem, Order, OrderItem, Subscription, ShopContact, ProductImage
 
 # Register your models here.
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('name', 'slug', 'created_at', 'updated_at')
-    prepopulated_fields = {'slug': ('name')}
+    prepopulated_fields = {'slug': ('name',)}
     search_fields = ('name',)
     list_filter = ('created_at', 'updated_at')
 
 @admin.register(AnimalType)
 class AnimalTypeAdmin(admin.ModelAdmin):
     list_display = ('name', 'description', 'created_at', 'updated_at')
-    search_fields = ('name')
+    search_fields = ('name',)
     list_filter = ('created_at', 'updated_at')
+
+class ProductImageInline(admin.TabularInline):
+    model = ProductImage
+    extra = 1
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
@@ -22,9 +26,10 @@ class ProductAdmin(admin.ModelAdmin):
     list_editable = ('is_discounted', 'price', 'discount_price', 'available')
     list_filter = ('category', 'animal_types', 'is_discounted', 'available', 'created_at', 'updated_at')
     search_fields = ('name', 'description')
-    prepopulated_fields = {'slug': ('name')}
-    filter_horizontal = ('animal_types')
+    prepopulated_fields = {'slug': ('name',)}
+    filter_horizontal = ('animal_types',)
     autocomplete_fields = ['category']
+    inlines = [ProductImageInline]
 
 @admin.register(Review)
 class ReviewAdmin(admin.ModelAdmin):
@@ -35,13 +40,13 @@ class ReviewAdmin(admin.ModelAdmin):
 @admin.register(Cart)
 class CartAdmin(admin.ModelAdmin):
     list_display = ('user', 'created_at')
-    search_fields = ('user__username')
-    list_filter = ('created_at')
+    search_fields = ('user__username',)
+    list_filter = ('created_at',)
 
 @admin.register(CartItem)
 class CartItemAdmin(admin.ModelAdmin):
     list_display = ('cart', 'product', 'quantity')
-    list_editable = ('quantity')
+    list_editable = ('quantity',)
     search_fields = ('cart__user__username', 'product__name')
     autocomplete_fields = ['cart', 'product']
 
@@ -63,8 +68,8 @@ class OrderItemAdmin(admin.ModelAdmin):
 @admin.register(Subscription)
 class SubscriptionAdmin(admin.ModelAdmin):
     list_display = ('email', 'created_at')
-    search_fields = ('email')
-    list_filter = ('created_at')
+    search_fields = ('email',)
+    list_filter = ('created_at',)
 
 @admin.register(ShopContact)
 class ShopContactAdmin(admin.ModelAdmin):
