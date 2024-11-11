@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, AnimalType, Product, Review, Cart, CartItem, Order, OrderItem, Subscription, ShopContact, ProductImage
+from .models import Category, AnimalType, Product, Review, Cart, CartItem, Order, OrderItem, Subscription, ShopContact, ProductImage, ContactRequest
 
 # Register your models here.
 
@@ -73,6 +73,24 @@ class SubscriptionAdmin(admin.ModelAdmin):
 
 @admin.register(ShopContact)
 class ShopContactAdmin(admin.ModelAdmin):
-    list_display = ('email', 'phone', 'address', 'created_at', 'updated_at')
+    list_display = ('email', 'phone', 'address', 'work_hours', 'created_at', 'updated_at')
     search_fields = ('email', 'phone', 'address')
     list_filter = ('created_at', 'updated_at')
+
+@admin.register(ContactRequest)
+class ContactRequestAdmin(admin.ModelAdmin):
+    list_display = ('name', 'email', 'subject', 'created_at')
+    list_filter = ('created_at',)
+    search_fields = ('name', 'email', 'subject', 'message')
+    readonly_fields = ('name', 'email', 'subject', 'message', 'created_at')
+    ordering = ('-created_at',)
+
+    fieldsets = (
+        (None, {
+            'fields': ('name', 'email', 'subject', 'message')
+        }),
+        ('Timestamp', {
+            'fields': ('created_at',),
+            'classes': ('collapse',)
+        }),
+    )

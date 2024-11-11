@@ -1,4 +1,6 @@
-{% extends 'base/base.html' %} {% load static %} {% block content %}
+{% extends 'base/base.html' %} 
+{% load static %} 
+{% block content %}
 <!-- slider Area Start-->
 <div class="slider-area">
   <!-- Mobile Menu -->
@@ -10,7 +12,7 @@
       <div class="row">
         <div class="col-xl-12">
           <div class="hero-cap text-center">
-            <h2>About</h2>
+            <h2>About Us</h2>
           </div>
         </div>
       </div>
@@ -27,20 +29,17 @@
         <div class="about_us_content">
           <h5>Our Mission</h5>
           <h3>
-            Donec imperdiet congue orci consequat mattis. Donec rutrum porttitor
-            sollicitudin. Pellentesque id dolor tempor sapien feugiat ultrices
-            nec sed neque.
+            Placeholder text placeholder text placeholder text placeholder text placeholder text placeholder text 69 
+            placeholder text placeholder text placeholder text  placeholder text placeholder text placeholder text.
           </h3>
           <div class="about_us_video">
             <img
-              src="{% static 'img/about_us_video.png' %}"
+              src="{% static 'img/about_us_video.jpg' %}"
               alt="#"
               class="img-fluid"
             />
-            <a
-              class="about_video_icon popup-youtube"
-              href="https://www.youtube.com/watch?v=DWHB6nTyKDI"
-            ></a>
+            <a class="about_video_icon popup-youtube" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+            </a>
           </div>
         </div>
       </div>
@@ -56,18 +55,14 @@
       <div class="col-lg-6">
         <div class="feature_part_tittle">
           <h3>
-            Credibly innovate granular internal or organic sources whereas
-            standards.
+            Placeholder text 69 placeholder text 69 placeholder text
           </h3>
         </div>
       </div>
       <div class="col-lg-5">
         <div class="feature_part_content">
           <p>
-            Seamlessly empower fully researched growth strategies and
-            interoperable internal or “organic” sources. Credibly innovate
-            granular internal or “organic” sources whereas high standards in
-            web-readiness.
+            Placeholder text 69 placeholder text 69 placeholder text
           </p>
         </div>
       </div>
@@ -108,36 +103,15 @@
     <div class="row justify-content-center">
       <div class="col-lg-8">
         <div class="client_review_slider owl-carousel">
+          {% for review in reviews %}
           <div class="single_client_review">
             <div class="client_img">
-              <img src="{% static 'img/client.png' %}" alt="#" />
+              <img src="{{ review.client_photo.url }}" alt="{{ review.client_name }}" />
             </div>
-            <p>
-              "Working in conjunction with humanitarian aid agencies, we have
-              supported programmes to help alleviate human suffering.
-            </p>
-            <h5>- Micky Mouse</h5>
+            <p>"{{ review.review_text }}"</p>
+            <h5>- {{ review.client_name }}</h5>
           </div>
-          <div class="single_client_review">
-            <div class="client_img">
-              <img src="{% static 'img/client_1.png' %}" alt="#" />
-            </div>
-            <p>
-              "Working in conjunction with humanitarian aid agencies, we have
-              supported programmes to help alleviate human suffering.
-            </p>
-            <h5>- Micky Mouse</h5>
-          </div>
-          <div class="single_client_review">
-            <div class="client_img">
-              <img src="{% static 'img/client_2.png' %}" alt="#" />
-            </div>
-            <p>
-              "Working in conjunction with humanitarian aid agencies, we have
-              supported programmes to help alleviate human suffering.
-            </p>
-            <h5>- Micky Mouse</h5>
-          </div>
+          {% endfor %}
         </div>
       </div>
     </div>
@@ -152,15 +126,12 @@
       <div class="col-lg-8">
         <div class="subscribe_part_content">
           <h2>Get promotions & updates!</h2>
-          <p>
-            Seamlessly empower fully researched growth strategies and
-            interoperable internal or “organic” sources credibly innovate
-            granular internal .
-          </p>
+          <p>Only what your loved ones would love.</p>
           <div class="subscribe_form">
-            <input type="email" placeholder="Enter your mail" />
-            <a href="#" class="btn_1">Subscribe</a>
+            <input type="email" id="email-input" name="email" placeholder="Enter your email" />
+            <a href="#" class="btn_1" id="subscribe-button">Subscribe</a>
           </div>
+          <p id="subscription-message" style="color: red; margin-top: 10px;"></p>
         </div>
       </div>
     </div>

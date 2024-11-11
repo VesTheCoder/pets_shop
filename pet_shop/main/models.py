@@ -102,8 +102,19 @@ class ShopContact(models.Model):
     phone = models.CharField(max_length=20)
     email = models.EmailField()
     address = models.TextField()
+    work_hours = models.TextField(default='24/7')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.email
+    
+class ContactRequest(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    subject = models.CharField(max_length=255)
+    message = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Contact Request from {self.name} - {self.email}"

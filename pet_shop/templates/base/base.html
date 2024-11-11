@@ -48,6 +48,111 @@
     {% include 'base/includes/footer.html' %}
 
     <!-- JS here -->
+    <script>
+      document.getElementById('load-more-btn').addEventListener('click', function() {
+        const button = this;
+        const nextPage = button.getAttribute('data-next-page');
+    
+        fetch(`/load-more-products/?page=${nextPage}`)
+          .then(response => response.json())
+          .then(data => {
+            const productContainer = document.getElementById('product-container');
+    
+            data.products.forEach(product => {
+              const productHTML = `
+                <div class="col-lg-4 col-sm-5 single-product">
+                  <div class="single_product_item">
+                    <img src="${product.image_url}" alt="${product.name}" class="img-fluid"/>
+                    <h3>
+                      <a href="/single-product/${product.slug}">${product.name}</a>
+                    </h3>
+                    <p>
+                      ${product.is_discounted ? `<span style="text-decoration: line-through; color: red">$${product.price}</span> $${product.discount_price}` : `$${product.price}`}
+                    </p>
+                  </div>
+                </div>
+              `;
+              productContainer.insertAdjacentHTML('beforeend', productHTML);
+            });
+    
+            if (data.has_next) {
+              button.setAttribute('data-next-page', parseInt(nextPage) + 1);
+            } else {
+              button.style.display = 'none';
+            }
+          });
+      });
+    </script>
+    
+    <script>
+      document.getElementById("subscribe-button").addEventListener("click", function(event) {
+          event.preventDefault();
+      
+          const emailInput = document.getElementById("email-input");
+          const email = emailInput.value.trim();
+          const messageElement = document.getElementById("subscription-message");
+      
+          messageElement.textContent = "";
+          fetch("{% url 'subscribe' %}", {
+              method: "POST",
+              headers: {
+                  "Content-Type": "application/x-www-form-urlencoded",
+                  "X-CSRFToken": "{{ csrf_token }}"
+              },
+              body: new URLSearchParams({
+                  "email": email
+              })
+          })
+          .then(response => response.json())
+          .then(data => {
+              if (data.success) {
+                  messageElement.style.color = "green";
+                  emailInput.value = "";
+              } else {
+                  messageElement.style.color = "red";
+              }
+              messageElement.textContent = data.message;
+          })
+          .catch(error => {
+              messageElement.style.color = "red";
+              messageElement.textContent = "An error occurred. Please try again later.";
+              console.error("Error:", error);
+          });
+      });
+      </script>
+
+<script>
+  document.getElementById('send-button').addEventListener('click', function (e) {
+    e.preventDefault();
+
+    let form = document.getElementById('contactForm');
+    let formData = new FormData(form);
+    let url = form.getAttribute('action');
+    let messageDiv = document.getElementById('contact-message');
+
+    fetch(url, {
+      method: 'POST',
+      body: formData,
+      headers: {
+        'X-Requested-With': 'XMLHttpRequest',
+        'X-CSRFToken': formData.get('csrfmiddlewaretoken')
+      }
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        messageDiv.innerHTML = `<p style="color: green;">${data.message}</p>`;
+        form.reset();
+      } else {
+        messageDiv.innerHTML = `<p style="color: red;">${data.message}</p>`;
+      }
+    })
+    .catch(error => {
+      messageDiv.innerHTML = `<p style="color: red;">Something went wrong. Please try again.</p>`;
+      console.error('Error:', error);
+    });
+  });
+</script>
 
     <!-- All JS Custom Plugins Link Here here -->
     <script src="{% static 'js/vendor/modernizr-3.5.0.min.js' %}"></script>

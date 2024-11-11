@@ -3658,6 +3658,10 @@ input:focus {
   position: absolute;
   top: 12px;
   right: 17px;
+  background: none;          /* Убираем фон кнопки */
+  border: none;              /* Убираем границу */
+  padding: 0;                /* Убираем отступы */          /* Устанавливаем указатель на курсор */
+  outline: none;             /* Убираем фокус-обводку */
 }
 
 /* line 183, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_headerMenu.scss */
@@ -13173,3 +13177,4 @@ input:focus {
   display: block; /* Для корректного центрирования */
   margin: 0 auto; /* Центрирует изображение горизонтально */
 }
+

@@ -18,14 +18,14 @@
             <div class="col-xl-5 col-lg-5 col-md-5 col-sm-8">
               <div class="hero__caption">
                 <span data-animation="fadeInRight" data-delay=".4s"
-                  >60% Discount</span
+                  >Up to 90% Discount!</span
                 >
                 <h1 data-animation="fadeInRight" data-delay=".6s">
-                  Winter <br />
+                  Loved ones <br />
                   Collection
                 </h1>
                 <p data-animation="fadeInRight" data-delay=".8s">
-                  Best Cloth Collection By 2020!
+                  Best Cloth Collection By 2024!
                 </p>
                 <!-- Hero-btn -->
                 <div
@@ -33,49 +33,14 @@
                   data-animation="fadeInRight"
                   data-delay="1s"
                 >
-                  <a href="industries.html" class="btn hero-btn">Shop Now</a>
+                  <a href="{% url 'product_list' %}" class="btn hero-btn">Shop Now</a>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div
-        class="single-slider slider-height"
-        data-background="{% static 'img/hero/h1_hero.jpg' %}"
-      >
-        <div class="container">
-          <div class="row d-flex align-items-center justify-content-between">
-            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 d-none d-md-block">
-              <div class="hero__img" data-animation="bounceIn" data-delay=".4s">
-                <img src="{% static 'img/hero/hero_man.png' %}" alt="" />
-              </div>
-            </div>
-            <div class="col-xl-5 col-lg-5 col-md-5 col-sm-8">
-              <div class="hero__caption">
-                <span data-animation="fadeInRight" data-delay=".4s"
-                  >60% Discount</span
-                >
-                <h1 data-animation="fadeInRight" data-delay=".6s">
-                  Winter <br />
-                  Collection
-                </h1>
-                <p data-animation="fadeInRight" data-delay=".8s">
-                  Best Cloth Collection By 2020!
-                </p>
-                <!-- Hero-btn -->
-                <div
-                  class="hero__btn"
-                  data-animation="fadeInRight"
-                  data-delay="1s"
-                >
-                  <a href="industries.html" class="btn hero-btn">Shop Now</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+
     </div>
   </div>
   <!-- slider Area End-->
@@ -87,9 +52,9 @@
         <!-- Left content -->
         <div class="col-xl-4 col-lg-4 col-md-6">
           <div class="best-left-cap">
-            <h2>Best Collection of This Month</h2>
-            <p>Designers who are interesten crea.</p>
-            <a href="#" class="btn shop1-btn">Shop Now</a>
+            <h2>Placeholder text</h2>
+            <p>Placeholder text.</p>
+            <a href="{% url 'product_list' %}" class="btn shop1-btn">Shop Now</a>
           </div>
           <div class="best-left-img mb-30 d-none d-sm-block">
             <img src="{% static 'img/collection/collection1.png' %}" alt="" />
@@ -101,14 +66,14 @@
             <img src="{% static 'img/collection/collection2.png' %}" alt="" />
           </div>
         </div>
-        <!-- Riht Caption -->
+        <!-- Right Caption -->
         <div class="col-xl-4 col-lg-6 col-md-6">
           <div class="best-right-cap">
             <div class="best-single mb-30">
               <div class="single-cap">
                 <h4>
-                  Menz Winter<br />
-                  Jacket
+                  Placeholder<br />
+                  Text
                 </h4>
               </div>
               <div class="single-img">
@@ -122,7 +87,7 @@
           <div class="best-right-cap">
             <div class="best-single mb-30">
               <div class="single-cap active">
-                <h4>Menz Winter<br />Jacket</h4>
+                <h4>Placeholder<br />Text</h4>
               </div>
               <div class="single-img">
                 <img
@@ -136,8 +101,8 @@
             <div class="best-single mb-30">
               <div class="single-cap">
                 <h4>
-                  Menz Winter<br />
-                  Jacket
+                  Placeholder<br />
+                  Text
                 </h4>
               </div>
               <div class="single-img">
@@ -159,27 +124,15 @@
       <div class="row justify-content-center">
         <div class="col-lg-8">
           <div class="client_review_slider owl-carousel">
-            <div class="single_client_review">
-              <div class="client_img">
-                <img src="{% static 'img/client.png' %}" alt="#" />
+            {% for review in reviews %}
+              <div class="single_client_review">
+                <div class="client_img">
+                <img src="{{ review.client_photo.url }}" alt="{{ review.client_name }}" />
+                </div>
+                <p style="color: black;">"{{ review.review_text }}"</p>
+                <h5 style="color: black;">- {{ review.client_name }}</h5>
               </div>
-              <p style="color: black">"Placeholder review text here."</p>
-              <h5 style="color: black">- Micky Mouse</h5>
-            </div>
-            <div class="single_client_review">
-              <div class="client_img">
-                <img src="{% static 'img/client_1.png' %}" alt="#" />
-              </div>
-              <p style="color: black">"Placeholder review text here."</p>
-              <h5 style="color: black">- Micky Mouse</h5>
-            </div>
-            <div class="single_client_review">
-              <div class="client_img">
-                <img src="{% static 'img/client_2.png' %}" alt="#" />
-              </div>
-              <p style="color: black">"Placeholder review text here."</p>
-              <h5 style="color: black">- Micky Mouse</h5>
-            </div>
+          {% endfor %}
           </div>
         </div>
       </div>
@@ -199,17 +152,17 @@
           </div>
           <div class="col-xl-2 col-lg-2 col-md-2 d-none d-lg-block">
             <div class="vertical-text">
-              <span>Manz</span>
+              <span>King</span>
             </div>
           </div>
           <div class="col-xl-8 col-lg-8">
             <div class="best-product-caption">
               <h2>
-                Find The Best Product<br />
-                from Our Shop
+                Placeholder<br />
+                Text
               </h2>
-              <p>Designers who are interesten creating state ofthe.</p>
-              <a href="#" class="black-btn">Shop Now</a>
+              <p>Placeholder text.</p>
+              <a href="{% url 'product_list' %}" class="black-btn">Shop Now</a>
             </div>
           </div>
         </div>
@@ -232,16 +185,18 @@
         <div class="row d-flex align-items-center">
           <div class="col-xl-5 col-lg-5 col-md-6 offset-xl-1 offset-lg-1">
             <div class="latest-caption">
-              <h2>Get Our<br />Latest Offers News</h2>
-              <p>Subscribe for the news latter</p>
+              <h2>Get Our<br />Latest Offers & News</h2>
+              <p>Subscribe for the news letter</p>
             </div>
           </div>
           <div class="col-xl-5 col-lg-5 col-md-6">
             <div class="latest-subscribe">
-              <form action="#">
-                <input type="email" placeholder="Your email here" />
-                <button>Subscribe</button>
+              <form action="{% url 'subscribe' %}" method="POST" id="subscribe-form">
+                {% csrf_token %}
+                <input type="email" id="email-input" placeholder="Your email here" />
+                <button type="button" id="subscribe-button">Subscribe</button>
               </form>
+              <div id="subscription-message" class="subscription-message"></div>
             </div>
           </div>
         </div>

@@ -31,18 +31,21 @@
               <ul
                 class="header-right f-right d-none d-lg-block d-flex justify-content-between"
               >
-                <li class="d-none d-xl-block">
-                  <div class="form-box f-right">
-                    <input
-                      type="text"
-                      name="Search"
-                      placeholder="Search products"
-                    />
-                    <div class="search-icon">
-                      <i class="fas fa-search special-tag"></i>
-                    </div>
-                  </div>
-                </li>
+              <li class="d-none d-xl-block">
+                <div class="form-box f-right">
+                    <form action="{% url 'product_list' %}" method="get" class="search-form">
+                        <input
+                            type="text"
+                            name="search"
+                            placeholder="Search products"
+                            value="{{ search_request }}"
+                        />
+                        <button type="submit" class="search-icon">
+                            <i class="fas fa-search special-tag"></i>
+                        </button>
+                    </form>
+                </div>
+              </li>
                 <li>
                   <div class="shopping-card">
                     <a href="{% url 'cart' %}"
