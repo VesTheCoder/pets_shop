@@ -73,8 +73,8 @@ class SubscriptionAdmin(admin.ModelAdmin):
 
 @admin.register(ShopContact)
 class ShopContactAdmin(admin.ModelAdmin):
-    list_display = ('email', 'phone', 'address', 'work_hours', 'created_at', 'updated_at')
-    search_fields = ('email', 'phone', 'address')
+    list_display = ('email', 'phone', 'address', 'work_hours', 'twitter', 'facebook', 'created_at', 'updated_at')
+    search_fields = ('email', 'phone', 'address', 'twitter', 'facebook')
     list_filter = ('created_at', 'updated_at')
 
 @admin.register(ContactRequest)

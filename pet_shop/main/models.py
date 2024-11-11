@@ -103,6 +103,8 @@ class ShopContact(models.Model):
     email = models.EmailField()
     address = models.TextField()
     work_hours = models.TextField(default='24/7')
+    twitter = models.URLField(blank=True, null=True, default=None)
+    facebook = models.URLField(blank=True, null=True, default=None)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

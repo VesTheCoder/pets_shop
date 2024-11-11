@@ -44,7 +44,21 @@
     </div>
     <!-- Preloader Start -->
 
-    {% include 'base/includes/header.html' %} {% block content %} {% endblock %}
+    {% include 'base/includes/header.html' %} 
+
+    {% block content %} 
+    {% endblock %}
+
+    {% if messages %}
+    <div class="messages">
+      {% for message in messages %}
+        <div class="alert {{ message.tags }}">
+          {{ message }}
+        </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
     {% include 'base/includes/footer.html' %}
 
     <!-- JS here -->

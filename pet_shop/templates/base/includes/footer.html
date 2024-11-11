@@ -67,9 +67,13 @@
           <div class="footer-copy-right f-right">
             <!-- social -->
             <div class="footer-social">
-              <a href="#"><i class="fab fa-twitter"></i></a>
-              <a href="#"><i class="fab fa-facebook-f"></i></a>
-            </div>
+              {% if shop_contact.twitter %}
+                  <a href="{{ shop_contact.twitter }}" target="_blank"><i class="fab fa-twitter"></i></a>
+              {% endif %}
+              {% if shop_contact.facebook %}
+                  <a href="{{ shop_contact.facebook }}" target="_blank"><i class="fab fa-facebook-f"></i></a>
+              {% endif %}
+          </div>
           </div>
         </div>
       </div>

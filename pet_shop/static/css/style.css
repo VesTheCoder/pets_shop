@@ -3653,6 +3653,48 @@ input:focus {
   width: 100%;
 }
 
+.user-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  text-align: center;
+  padding: 30px;
+}
+
+.user-area-content {
+  max-width: 600px;
+}
+
+/* Стили для кнопки logout */
+.logout-btn {
+  color: white;
+  background-color: #ff4b4b; /* Красная кнопка */
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.logout-btn:hover {
+  background-color: #d43d3d;
+}
+
+.login-btn {
+  color: white;
+  background-color: #4ba8ff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.login-btn:hover {
+  background-color: #4ba8ff;
+}
+
 /* line 179, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_headerMenu.scss */
 .header-bottom .header-right .form-box .search-icon {
   position: absolute;

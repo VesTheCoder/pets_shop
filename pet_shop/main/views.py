@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Product, Category, AnimalType, Review, Subscription, ContactRequest, ShopContact
 from django.http import JsonResponse
 from django.core.paginator import Paginator
@@ -6,6 +6,10 @@ from django.views.decorators.http import require_POST
 from django.views.decorators.csrf import csrf_exempt
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
+from django.contrib.auth import login as auth_login, logout as auth_logout, authenticate
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from .forms import UserRegistrationForm, LoginForm
 
 
 # Create your views here.
@@ -41,8 +45,36 @@ def contact(request):
         'shop_contact': shop_contact
     })
 
-def login(request):
-    return render(request, 'login/login.html')
+def login_user(request):
+    if request.method == 'POST':
+        form = LoginForm(request, data=request.POST)
+        if form.is_valid():
+            auth_login(request, form.get_user())
+            return redirect('user_account')
+        else:
+            messages.error(request, "Invalid email or password.")
+    else:
+        form = LoginForm()
+    return render(request, 'login/login.html', {'form': form})
+
+def register_user(request):
+    if request.method == 'POST':
+        form = UserRegistrationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            auth_login(request, user)
+            return redirect('user_account')
+    else:
+        form = UserRegistrationForm()
+    return render(request, 'login/registration.html', {'form': form})
+
+@login_required(login_url='login')
+def user_account(request):
+    return render(request, 'login/user-account.html')
+
+def logout_user(request):
+    auth_logout(request)
+    return render(request, 'login/logout.html')
 
 def product_list(request):
     products = Product.objects.filter(available=True)

@@ -10,7 +10,7 @@
       <div class="row">
         <div class="col-xl-12">
           <div class="hero-cap text-center">
-            <h2>Login</h2>
+            <h2>Registration</h2>
           </div>
         </div>
       </div>
@@ -19,55 +19,43 @@
 </div>
 <!-- slider Area End-->
 
-<!--================login_part Area =================-->
+<!--================registration_part Area =================-->
 <section class="login_part section_padding">
   <div class="container">
-    <div class="row align-items-center">
-      <div class="col-lg-6 col-md-6">
-        <div class="login_part_text text-center">
-          <div class="login_part_text_iner">
-            <h2>New to our Shop?</h2>
-            <p>
-              There are advances being made in science and technology everyday,
-              and a good example of this is you.
-            </p>
-            <a href="{% url 'registration' %}" class="btn_3">Create an Account</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-6 col-md-6">
+    <div class="row justify-content-center">
+      <div class="col-lg-6 col-md-8">
         <div class="login_part_form">
           <div class="login_part_form_iner">
             <h3>
-              Welcome Back ! <br />
-              Please Sign in now
+              Welcome! <br />
+              Please fill the form to register
             </h3>
-            <form action="{% url 'login' %}" method="post" class="row contact_form">
+            <form action="{% url 'registration' %}" method="post" class="row contact_form">
               {% csrf_token %}
               
               <!-- form errors -->
               {% if form.errors or form.non_field_errors %}
-                <div class="alert alert-danger">
-                  <ul>
-                    {% for error in form.non_field_errors %}
+              <div class="alert alert-danger">
+                <ul>
+                  {% for error in form.non_field_errors %}
+                    <li>{{ error }}</li>
+                  {% endfor %}
+                  {% for field in form %}
+                    {% for error in field.errors %}
                       <li>{{ error }}</li>
                     {% endfor %}
-                    {% for field in form %}
-                      {% for error in field.errors %}
-                        <li>{{ error }}</li>
-                      {% endfor %}
-                    {% endfor %}
-                  </ul>
-                </div>
-              {% endif %}
+                  {% endfor %}
+                </ul>
+              </div>
+              {% endif %}             
 
               <div class="col-md-12 form-group p_star">
                 <input
                   type="email"
                   class="form-control"
-                  id="username"
-                  name="username"
-                  value="{{ form.username.value|default_if_none:'' }}"
+                  id="email"
+                  name="email"
+                  value="{{ form.email.value|default_if_none:'' }}"
                   placeholder="E-mail"
                 />
               </div>
@@ -81,18 +69,25 @@
                   placeholder="Password"
                 />
               </div>
+              <div class="col-md-12 form-group p_star">
+                <input
+                  type="password"
+                  class="form-control"
+                  id="confirm_password"
+                  name="confirm_password"
+                  value="{{ form.confirm_password.value|default_if_none:'' }}"
+                  placeholder="Repeat password"
+                />
+              </div>
               <div class="col-md-12 form-group">
-                <button type="submit" value="submit" class="btn_3">
-                  log in
-                </button>
+                <button type="submit" value="submit" class="btn_3">register</button>
               </div>
             </form>
-            <!-- Form End -->
           </div>
         </div>
       </div>
     </div>
   </div>
 </section>
-<!--================login_part end =================-->
+<!--================registration_part end =================-->
 {% endblock content %}
