@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col-xl-12">
                     <div class="hero-cap text-center">
-                        <h2>Card List</h2>
+                        <h2>Cart List</h2>
                     </div>
                 </div>
             </div>
@@ -91,7 +91,9 @@
 
         <div class="checkout_btn_inner float-right">
           <a class="btn_1" href="{% url 'product_list' %}">Continue Shopping</a>
-          <a class="btn_1 checkout_btn_1" href="{% url 'checkout' %}">Proceed to checkout</a>
+          <a class="btn_1 checkout_btn_1 {% if is_empty %}disabled{% endif %}" 
+             href="{% if not is_empty %}{% url 'cart:checkout' %}{% endif %}" 
+             id="checkoutButton">Proceed to checkout</a>
         </div>
       </div>
     </div>

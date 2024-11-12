@@ -31,20 +31,14 @@ def about(request):
         'reviews': reviews
     })
 
-def cart(request):
-    return render(request, 'cart/cart.html')
-
-def checkout(request):
-    return render(request, 'checkout/checkout.html')
-
-def confirmation(request):
-    return render(request, 'confirmation/confirmation.html')
-
 def contact(request):
     shop_contact = ShopContact.objects.first()
     return render(request, 'contact/contact.html', {
         'shop_contact': shop_contact
     })
+
+def cart(request):
+    return render(request, 'cart/cart.html')
 
 def login_user(request):
     if request.method == 'POST':
@@ -125,7 +119,6 @@ def single_product(request, slug):
         'form': cart_product_form
     })
 
-
 def load_more_products(request):
     page_number = request.GET.get('page')
     products = Product.objects.filter(available=True)
@@ -170,7 +163,6 @@ def contact_request(request):
         return JsonResponse({"success": True, "message": "Thanks for reaching out! We will get back to you soon."})
     else:
         return JsonResponse({"success": False, "message": "Something went wrong, please try later."}, status=400)
-
 
 @require_POST
 def subscribe(request):

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, AnimalType, Product, Review, Cart, CartItem, Order, OrderItem, Subscription, ShopContact, ProductImage, ContactRequest
+from .models import Category, AnimalType, Product, Review, Subscription, ShopContact, ProductImage, ContactRequest
 
 # Register your models here.
 
@@ -36,34 +36,6 @@ class ReviewAdmin(admin.ModelAdmin):
     list_display = ('client_name', 'is_visible', 'created_at', 'updated_at')
     search_fields = ('client_name', 'review_text')
     list_filter = ('created_at', 'updated_at', 'is_visible')
-
-@admin.register(Cart)
-class CartAdmin(admin.ModelAdmin):
-    list_display = ('user', 'created_at')
-    search_fields = ('user__username',)
-    list_filter = ('created_at',)
-
-@admin.register(CartItem)
-class CartItemAdmin(admin.ModelAdmin):
-    list_display = ('cart', 'product', 'quantity')
-    list_editable = ('quantity',)
-    search_fields = ('cart__user__username', 'product__name')
-    autocomplete_fields = ['cart', 'product']
-
-@admin.register(Order)
-class OrderAdmin(admin.ModelAdmin):
-    list_display = ('user', 'total_price', 'status', 'created_at')
-    list_editable = ('status',)
-    search_fields = ('user__username', 'status')
-    list_filter = ('status', 'created_at')
-    autocomplete_fields = ['user']
-
-@admin.register(OrderItem)
-class OrderItemAdmin(admin.ModelAdmin):
-    list_display = ('order', 'product', 'quantity', 'price')
-    list_editable = ('quantity', 'price')
-    search_fields = ('order__user__username', 'product__name')
-    autocomplete_fields = ['order', 'product']
 
 @admin.register(Subscription)
 class SubscriptionAdmin(admin.ModelAdmin):

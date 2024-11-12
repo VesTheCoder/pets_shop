@@ -1,0 +1,162 @@
+{% extends 'base/base.html' %} {% load static %} {% block content %}
+<!-- slider Area Start-->
+<div class="slider-area">
+  <!-- Mobile Menu -->
+  <div
+    class="single-slider slider-height2 d-flex align-items-center"
+    data-background="{% static 'img/hero/category.jpg' %}"
+  >
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-12">
+          <div class="hero-cap text-center">
+            <h2>Checkout</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- slider Area End-->
+
+<!--================Checkout Area =================-->
+<section class="checkout_area section_padding">
+  <div class="container">
+    <div class="billing_details">
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="order_box">
+            <div class="col-12 d-flex justify-content-center">
+              <h2>Your Order</h2>
+            </div>
+            <ul class="list">
+              <li>
+                <a href="#">
+                  Product
+                  <span>Total</span>
+                </a>
+              </li>
+              {% for item in cart %}
+              <li>
+                <a href="#">
+                  {{ item.product.name }}
+                  <span class="middle">x {{ item.quantity }}</span>
+                  <span class="last">${{ item.total_price }}</span>
+                </a>
+              </li>
+              {% endfor %}
+            </ul>
+            <ul class="list list_2">
+              <li>
+                <a href="#">
+                  Subtotal
+                  <span>${{ cart.get_total_price }}</span>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  Shipping
+                  <span>Free</span>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  Total
+                  <span>${{ cart.get_total_price }}</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-8">
+          <div class="col-12 d-flex justify-content-center">
+            <h3 style="margin-top: 30px;">Shipping Details</h3>
+          </div>
+          <form
+            class="row contact_form"
+            action="{% url 'cart:checkout' %}"
+            method="post"
+            novalidate="novalidate"
+          >
+            {% csrf_token %}
+            <div class="col-md-6 form-group p_star">
+              <input type="text" class="form-control" id="first" name="first_name" required />
+              <span class="placeholder" data-placeholder="First name"></span>
+            </div>
+            <div class="col-md-6 form-group p_star">
+              <input type="text" class="form-control" id="last" name="last_name" required />
+              <span class="placeholder" data-placeholder="Last name"></span>
+            </div>
+            <div class="col-md-12 form-group">
+              <input
+                type="text"
+                class="form-control"
+                id="company"
+                name="company"
+                placeholder="Company name"
+              />
+            </div>
+            <div class="col-md-6 form-group p_star">
+              <input
+                type="text"
+                class="form-control"
+                id="number"
+                name="phone"
+                required
+              />
+              <span class="placeholder" data-placeholder="Phone number"></span>
+            </div>
+            <div class="col-md-6 form-group p_star">
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                name="email"
+              />
+              <span class="placeholder" data-placeholder="Email Address"></span>
+            </div>
+            <div class="col-md-12 form-group p_star">
+              <input type="text" class="form-control" id="country" name="country" required />
+              <span class="placeholder" data-placeholder="Country"></span>
+            </div>
+            <div class="col-md-12 form-group p_star">
+              <input type="text" class="form-control" id="add1" name="address_line_1" required />
+              <span class="placeholder" data-placeholder="Address line 01"></span>
+            </div>
+            <div class="col-md-12 form-group p_star">
+              <input type="text" class="form-control" id="add2" name="address_line_2" />
+              <span class="placeholder" data-placeholder="Address line 02"></span>
+            </div>
+            <div class="col-md-12 form-group p_star">
+              <input type="text" class="form-control" id="city" name="city" required />
+              <span class="placeholder" data-placeholder="Town/City"></span>
+            </div>
+            <div class="col-md-12 form-group">
+              <input type="text" class="form-control" id="zip" name="zip_code" placeholder="Postcode/ZIP" required />
+            </div>
+            <div class="col-md-12 form-group">
+              <textarea class="form-control" name="order_notes" id="message" rows="1" placeholder="Order Notes"></textarea>
+            </div>
+            {% if form.errors %}
+              <div class="alert alert-danger">
+                <ul>
+                  {% for field in form %}
+                    {% for error in field.errors %}
+                      <li>{{ error }}</li>
+                    {% endfor %}
+                  {% endfor %}
+                </ul>
+              </div>
+            {% endif %}
+            <div class="col-12 d-flex justify-content-center">
+              <button type="submit" class="btn_3">Finalize</button>
+          </div>
+          </form>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</section>
+<!--================End Checkout Area =================-->
+{% endblock content %}
