@@ -25,8 +25,7 @@
     <div class="row justify-content-center">
       <div class="col-lg-5">
         <div
-          class="product_img_slide owl-carousel d-flex justify-content-center"
-        >
+          class="product_img_slide owl-carousel d-flex justify-content-center">
           {% for image in product.images.all %}
           <div class="single_product_img">
             <img
@@ -56,28 +55,29 @@
               {% endif %}
             </ul>
           </div>
+
           <div class="card_area">
-            <div class="product_count_area">
-              <p>Quantity</p>
-              <div class="product_count d-inline-block">
-                <span class="product_count_item inumber-decrement">
-                  <i class="ti-minus"></i>
-                </span>
-                <input
-                  class="product_count_item input-number"
-                  type="text"
-                  value="1"
-                  min="1"
-                  max="10"
-                />
-                <span class="product_count_item number-increment">
-                  <i class="ti-plus"></i>
-                </span>
+            <form method="post" action="{% url 'cart:cart_add' product.id %}">
+              {% csrf_token %}
+              <div class="product_count_area">
+                <p>Quantity</p>
+                <div class="product_count d-inline-block">
+                  <span class="product_count_item inumber-decrement">
+                    <i class="ti-minus"></i>
+                  </span>
+                  <input type="text" name="quantity" value="1" class="product_count_item input-number" min="1" max="20" />
+                  <span class="product_count_item number-increment">
+                    <i class="ti-plus"></i>
+                  </span>
+                </div>
               </div>
-            </div>
-            <div class="add_to_cart">
-              <a href="#" class="btn_3">add to cart</a>
-            </div>
+              
+              <div class="add_to_cart mt-3">
+                <button type="submit" class="btn_3">add to cart</button>
+              </div>
+              
+              {{ form.override }}
+            </form>
           </div>
         </div>
       </div>

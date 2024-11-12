@@ -3695,6 +3695,39 @@ input:focus {
   background-color: #4ba8ff;
 }
 
+.centered-header {
+  text-align: center; /* Центрирование текста внутри ячейки */
+}
+
+/* Контейнер для поля quantity, кнопок и других элементов в ячейке */
+td form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Размещение кнопок Update и Remove */
+.cart-buttons {
+  display: flex; /* Используем Flexbox */
+  justify-content: center; /* Выравнивание кнопок по центру горизонтально */
+  align-items: center; /* Выравнивание кнопок по центру вертикально */
+  gap: 10px; /* Расстояние между кнопками */
+  margin-top: 1px; /* Немного отступа сверху, чтобы кнопки не прижимались к полю quantity */
+}
+
+/* Для поля input */
+td form .form-group {
+  display: flex;
+  justify-content: center; /* Выравнивание поля по центру */
+  margin-bottom: 1px; /* Отступ снизу, чтобы поле не слипалось с кнопками */
+}
+
+input[type="number"] {
+  width: 70px; /* Ширина поля ввода */
+  text-align: center; /* Центрирование числа внутри поля */
+}
+
 /* line 179, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_headerMenu.scss */
 .header-bottom .header-right .form-box .search-icon {
   position: absolute;

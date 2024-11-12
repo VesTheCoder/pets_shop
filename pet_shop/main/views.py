@@ -10,6 +10,7 @@ from django.contrib.auth import login as auth_login, logout as auth_logout, auth
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegistrationForm, LoginForm
+from cart.forms import CartAddProductForm
 
 
 # Create your views here.
@@ -118,7 +119,11 @@ def product_list(request):
 
 def single_product(request, slug):
     product = get_object_or_404(Product, slug=slug)
-    return render(request, 'single-product/single-product.html', {'product': product})
+    cart_product_form = CartAddProductForm()
+    return render(request, 'single-product/single-product.html', {
+        'product': product,
+        'form': cart_product_form
+    })
 
 
 def load_more_products(request):
