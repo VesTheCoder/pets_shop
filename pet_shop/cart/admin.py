@@ -25,4 +25,3 @@ class OrderAdmin(admin.ModelAdmin):
             'fields': ('items', 'subtotal', 'shipping_cost', 'total', 'order_notes')
         }),
     )
-

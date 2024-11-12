@@ -71,4 +71,3 @@ def checkout(request):
 
 def confirmation(request):
     return render(request, 'cart/confirmation.html')
-

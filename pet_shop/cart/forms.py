@@ -7,12 +7,12 @@ class CartAddProductForm(forms.Form):
     override = forms.BooleanField(required=False, initial=False, widget=forms.HiddenInput)
 
 class CheckoutForm(forms.Form):
-    first_name = forms.CharField(max_length=50)
-    last_name = forms.CharField(max_length=50)
+    first_name = forms.CharField(max_length=80)
+    last_name = forms.CharField(max_length=80)
     company = forms.CharField(max_length=100, required=False)
     phone = forms.CharField(max_length=20)
     email = forms.EmailField(required=False)
-    country = forms.CharField(max_length=50)
+    country = forms.CharField(max_length=80)
     address_line_1 = forms.CharField(max_length=255)
     address_line_2 = forms.CharField(max_length=255, required=False)
     city = forms.CharField(max_length=100)
