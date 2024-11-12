@@ -102,6 +102,7 @@
                   src="{{ product.images.first.image.url }}"
                   alt="{{ product.name }}"
                   class="img-fluid"
+                  style="border-radius: 30px;"
                 />
                 <h3>
                   <a href="{% url 'single-product' product.slug %}">

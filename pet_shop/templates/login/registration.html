@@ -35,7 +35,7 @@
               
               <!-- form errors -->
               {% if form.errors or form.non_field_errors %}
-              <div class="alert alert-danger">
+              <div class="alert alert-danger mx-auto text-center">
                 <ul>
                   {% for error in form.non_field_errors %}
                     <li>{{ error }}</li>
@@ -47,7 +47,7 @@
                   {% endfor %}
                 </ul>
               </div>
-              {% endif %}             
+              {% endif %}
 
               <div class="col-md-12 form-group p_star">
                 <input

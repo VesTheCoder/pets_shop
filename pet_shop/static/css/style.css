@@ -6025,6 +6025,8 @@ input[type="number"] {
   color: #999999;
 }
 
+
+
 /* line 729, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_blog_page.scss */
 .blog_right_sidebar .newsletter_widget .form-control:focus {
   border-color: #f0e9ff;
@@ -11527,9 +11529,7 @@ input:focus {
 }
 
 /* line 1525, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_product.scss */
-.p_star input:focus + .placeholder {
-  display: none;
-}
+
 
 /* line 1529, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_product.scss */
 .p_star .placeholder {
@@ -11538,6 +11538,18 @@ input:focus {
   transform: translateY(-50%);
   left: 30px;
   z-index: 1;
+  opacity: 1; /* Placeholder видим по умолчанию */
+  visibility: visible;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+/* Скрытие placeholder, когда поле в фокусе или уже заполнено */
+.p_star input:focus + .placeholder,
+.p_star input:valid + .placeholder,
+.p_star textarea:focus + .placeholder,
+.p_star textarea:valid + .placeholder {
+  opacity: 0;
+  visibility: hidden;
 }
 
 /* line 1537, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_product.scss */

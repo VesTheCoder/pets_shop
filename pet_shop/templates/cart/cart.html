@@ -36,11 +36,14 @@
               <td>
                 <div class="media">
                   <div class="d-flex">
-                    <!-- Display the first image of the product -->
-                    <img src="{{ item.product.images.first.image.url }}" alt="{{ item.product.name }}" class="img-fluid" />
+                    <a href="{% url 'single-product' item.product.slug %}">
+                      <img src="{{ item.product.images.first.image.url }}" alt="{{ item.product.name }}" class="img-fluid" />
+                    </a>
                   </div>
                   <div class="media-body">
-                    <p>{{ item.product.name }}</p>
+                    <a href="{% url 'single-product' item.product.slug %}">
+                      <p>{{ item.product.name }}</p>
+                    </a>
                   </div>
                 </div>
               </td>
@@ -64,7 +67,7 @@
             {% endfor %}
             <tr class="bottom_button">
               <td>
-                <a class="btn_1" href="{% url 'cart:cart_detail' %}">Update Cart</a>
+                <a class="btn_1" href="{% url 'cart:cart_detail' %}">Update</a>
               </td>
               <td></td>
               <td></td>
@@ -89,11 +92,13 @@
           </tbody>
         </table>
 
+        <div class="checkout_btn_inner float-left">
+          <a class="btn_1" href="{% url 'product_list' %}">Shop More</a>
+        </div>
         <div class="checkout_btn_inner float-right">
-          <a class="btn_1" href="{% url 'product_list' %}">Continue Shopping</a>
           <a class="btn_1 checkout_btn_1 {% if is_empty %}disabled{% endif %}" 
              href="{% if not is_empty %}{% url 'cart:checkout' %}{% endif %}" 
-             id="checkoutButton">Proceed to checkout</a>
+             id="checkoutButton">Checkout</a>
         </div>
       </div>
     </div>

@@ -49,15 +49,7 @@
     {% block content %} 
     {% endblock %}
 
-    {% if messages %}
-    <div class="messages">
-      {% for message in messages %}
-        <div class="alert {{ message.tags }}">
-          {{ message }}
-        </div>
-      {% endfor %}
-    </div>
-    {% endif %}
+    
 
     {% include 'base/includes/footer.html' %}
 
@@ -74,6 +66,16 @@
           });
         }
       });
+    </script>
+
+    <script>
+      function limitQuantity(input) {
+        if (input.value > 20) {
+          input.value = 20; // Устанавливаем максимальное значение 20
+        } else if (input.value < 1) {
+          input.value = 1; // Устанавливаем минимальное значение 1
+        }
+      }
     </script>
 
     <script>

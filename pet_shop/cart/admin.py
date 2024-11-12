@@ -1,8 +1,10 @@
 from django.contrib import admin
 from .models import Order
 
+
 # Register your models here.
 
+@admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
     list_display = ('id', 'user', 'first_name', 'last_name', 'total', 'status', 'created_at')
     list_filter = ('status', 'created_at')
@@ -24,4 +26,3 @@ class OrderAdmin(admin.ModelAdmin):
         }),
     )
 
-admin.site.register(Order, OrderAdmin)

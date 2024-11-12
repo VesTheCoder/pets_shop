@@ -79,13 +79,11 @@
             novalidate="novalidate"
           >
             {% csrf_token %}
-            <div class="col-md-6 form-group p_star">
-              <input type="text" class="form-control" id="first" name="first_name" required />
-              <span class="placeholder" data-placeholder="First name"></span>
+            <div class="col-md-6 form-group">
+              <input type="text" class="form-control" id="first" name="first_name" placeholder="First name *" required />
             </div>
-            <div class="col-md-6 form-group p_star">
-              <input type="text" class="form-control" id="last" name="last_name" required />
-              <span class="placeholder" data-placeholder="Last name"></span>
+            <div class="col-md-6 form-group">
+              <input type="text" class="form-control" id="last" name="last_name" placeholder="Last name *" required />
             </div>
             <div class="col-md-12 form-group">
               <input
@@ -96,43 +94,44 @@
                 placeholder="Company name"
               />
             </div>
-            <div class="col-md-6 form-group p_star">
+            <div class="col-md-6 form-group">
               <input
                 type="text"
                 class="form-control"
                 id="number"
                 name="phone"
+                placeholder="Phone number *"
                 required
               />
-              <span class="placeholder" data-placeholder="Phone number"></span>
+              
             </div>
-            <div class="col-md-6 form-group p_star">
+            <div class="col-md-6 form-group">
               <input
                 type="email"
                 class="form-control"
                 id="email"
                 name="email"
+                placeholder="Email *"
               />
-              <span class="placeholder" data-placeholder="Email Address"></span>
-            </div>
-            <div class="col-md-12 form-group p_star">
-              <input type="text" class="form-control" id="country" name="country" required />
-              <span class="placeholder" data-placeholder="Country"></span>
-            </div>
-            <div class="col-md-12 form-group p_star">
-              <input type="text" class="form-control" id="add1" name="address_line_1" required />
-              <span class="placeholder" data-placeholder="Address line 01"></span>
-            </div>
-            <div class="col-md-12 form-group p_star">
-              <input type="text" class="form-control" id="add2" name="address_line_2" />
-              <span class="placeholder" data-placeholder="Address line 02"></span>
-            </div>
-            <div class="col-md-12 form-group p_star">
-              <input type="text" class="form-control" id="city" name="city" required />
-              <span class="placeholder" data-placeholder="Town/City"></span>
+              
             </div>
             <div class="col-md-12 form-group">
-              <input type="text" class="form-control" id="zip" name="zip_code" placeholder="Postcode/ZIP" required />
+              <input type="text" class="form-control" id="country" name="country" placeholder="Country *" required />
+              
+            </div>
+            <div class="col-md-12 form-group">
+              <input type="text" class="form-control" id="add1" name="address_line_1" placeholder="Address *" required />
+              
+            </div>
+            <div class="col-md-12 form-group">
+              <input type="text" class="form-control" id="add2" name="address_line_2" placeholder="Apt, suite, unit, floor, etc." />
+            </div>
+            <div class="col-md-12 form-group">
+              <input type="text" class="form-control" id="city" name="city" placeholder="City/Town *" required />
+             
+            </div>
+            <div class="col-md-12 form-group">
+              <input type="text" class="form-control" id="zip" name="zip_code" placeholder="Postcode/ZIP *" required />
             </div>
             <div class="col-md-12 form-group">
               <textarea class="form-control" name="order_notes" id="message" rows="1" placeholder="Order Notes"></textarea>
