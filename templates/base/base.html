@@ -69,6 +69,23 @@
     </script>
 
     <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        function toggleMobileOnly() {
+            const mobileOnlyElement = document.querySelector(".mobile-only");
+            if (window.innerWidth <= 992) {
+                mobileOnlyElement.style.display = "block";
+            } else {
+                mobileOnlyElement.style.display = "none";
+            }
+        }
+
+        // Проверка видимости при загрузке и при изменении размера окна
+        toggleMobileOnly();
+        window.addEventListener("resize", toggleMobileOnly);
+    });
+    </script>
+
+    <script>
       function limitQuantity(input) {
         if (input.value > 20) {
           input.value = 20; // Устанавливаем максимальное значение 20
