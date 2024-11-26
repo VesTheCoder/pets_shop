@@ -12,8 +12,6 @@ from django.contrib.auth.decorators import login_required
 from .forms import UserRegistrationForm, LoginForm
 from cart.forms import CartAddProductForm
 
-# Create your views here.
-
 def index(request):
 
     reviews = Review.objects.filter(is_visible=True)
