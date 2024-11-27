@@ -13,43 +13,51 @@ from .forms import UserRegistrationForm, LoginForm
 from cart.forms import CartAddProductForm
 
 def index(request):
-
+    '''
+    Render the index page with visible reviews.
+    '''
     reviews = Review.objects.filter(is_visible=True)
-
-    return render(request, 'index/index.html', {
-        'reviews': reviews
-    })
+    return render(request, 'index/index.html', {'reviews': reviews})
 
 def about(request):
-
+    '''
+    Render the about page with visible reviews.
+    '''
     reviews = Review.objects.filter(is_visible=True)
-
-    return render(request, 'about/about.html', {
-        'reviews': reviews
-    })
+    return render(request, 'about/about.html', {'reviews': reviews})
 
 def contact(request):
+    '''
+    Render the contact page with shop contact information.
+    '''
     shop_contact = ShopContact.objects.first()
-    return render(request, 'contact/contact.html', {
-        'shop_contact': shop_contact
-    })
+    return render(request, 'contact/contact.html', {'shop_contact': shop_contact})
 
 def cart(request):
+    '''
+    Render the cart page.
+    '''
     return render(request, 'cart/cart.html')
 
 def login_user(request):
+    '''
+    Handle user login. Redirect to user account if successful.
+    '''
     if request.method == 'POST':
         form = LoginForm(request, data=request.POST)
         if form.is_valid():
             auth_login(request, form.get_user())
             return redirect('user_account')
         else:
-            messages.error(request, "Invalid email or password.")
+            messages.error(request, 'Invalid email or password.')
     else:
         form = LoginForm()
     return render(request, 'login/login.html', {'form': form})
 
 def register_user(request):
+    '''
+    Handle user registration. Redirect to user account if successful.
+    '''
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
@@ -62,13 +70,22 @@ def register_user(request):
 
 @login_required(login_url='login')
 def user_account(request):
+    '''
+    Render the user account page. Login required.
+    '''
     return render(request, 'login/user-account.html')
 
 def logout_user(request):
+    '''
+    Handle user logout and render logout page.
+    '''
     auth_logout(request)
     return render(request, 'login/logout.html')
 
 def product_list(request):
+    '''
+    Render the product list page with filtering and pagination.
+    '''
     products = Product.objects.filter(available=True)
     categories = Category.objects.all()
     animal_types = AnimalType.objects.all()
@@ -109,6 +126,9 @@ def product_list(request):
     })
 
 def single_product(request, slug):
+    '''
+    Render the single product page.
+    '''
     product = get_object_or_404(Product, slug=slug)
     cart_product_form = CartAddProductForm()
     return render(request, 'single-product/single-product.html', {
@@ -117,6 +137,9 @@ def single_product(request, slug):
     })
 
 def load_more_products(request):
+    '''
+    Handle AJAX request to load more products.
+    '''
     page_number = request.GET.get('page')
     products = Product.objects.filter(available=True)
     paginator = Paginator(products, 9)
@@ -141,37 +164,43 @@ def load_more_products(request):
 
 @csrf_exempt
 def contact_request(request):
-    if request.method == "POST":
+    '''
+    Handle contact request submission.
+    '''
+    if request.method == 'POST':
         name = request.POST.get('name')
         email = request.POST.get('email')
         subject = request.POST.get('subject')
         message = request.POST.get('message')
         
         if not name or not email or not subject or not message:
-            return JsonResponse({"success": False, "message": "All fields are required."}, status=400)
+            return JsonResponse({'success': False, 'message': 'All fields are required.'}, status=400)
         
         try:
             validate_email(email)
         except ValidationError:
-            return JsonResponse({"success": False, "message": "A mistake? Input the correct email"}, status=400)
+            return JsonResponse({'success': False, 'message': 'A mistake? Input the correct email'}, status=400)
         
         ContactRequest.objects.create(name=name, email=email, subject=subject, message=message)
         
-        return JsonResponse({"success": True, "message": "Thanks for reaching out! We will get back to you soon."})
+        return JsonResponse({'success': True, 'message': 'Thanks for reaching out! We will get back to you soon.'}, status=200)
     else:
-        return JsonResponse({"success": False, "message": "Something went wrong, please try later."}, status=400)
+        return JsonResponse({'success': False, 'message': 'Something went wrong, please try later.'}, status=400)
 
 @require_POST
 def subscribe(request):
+    '''
+    Handle newsletter subscription.
+    '''
     email = request.POST.get('email', '').strip()
 
     try:
         validate_email(email)
     except ValidationError:
-        return JsonResponse({"success": False, "message": "A mistake? Input the correct email"})
+        return JsonResponse({'success': False, 'message': 'A mistake? Input the correct email'})
 
     if Subscription.objects.filter(email=email).exists():
-        return JsonResponse({"success": False, "message": "Thank you, you are already subscribed"})
+        return JsonResponse({'success': False, 'message': 'Thank you, you are already subscribed'})
     
     Subscription.objects.create(email=email)
-    return JsonResponse({"success": True, "message": "Thank you for your subscription!"})
+    return JsonResponse({'success': True, 'message': 'Thank you for your subscription!'})

@@ -2,6 +2,14 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class Order(models.Model):
+    '''
+    Represents an order in the e-commerce system.
+
+    This model stores all relevant information about an order,
+    including customer details, shipping information, order items,
+    and financial details.
+    '''
+
     STATUS_CHOICES = [
         ('new', 'New'),
         ('processed', 'Processed'),
@@ -35,4 +43,7 @@ class Order(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f"Order {self.id} by {self.user.email if self.user else 'Guest'} - Status: {self.status}"
+        '''
+        Returns a string representation of the order.
+        '''
+        return f'Order {self.id} by {self.user.email if self.user else 'Guest'} - Status: {self.status}'

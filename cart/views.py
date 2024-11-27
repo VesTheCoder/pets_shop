@@ -8,6 +8,9 @@ from .models import Order
 
 @require_POST
 def cart_add(request, product_id):
+    '''
+    Add a product to the cart or update its quantity.
+    '''
     cart = Cart(request)
     product = get_object_or_404(Product, id=product_id)
     form = CartAddProductForm(request.POST)
@@ -18,6 +21,9 @@ def cart_add(request, product_id):
 
 @require_POST
 def cart_remove(request, product_id):
+    '''
+    Remove a product from the cart.
+    '''
     cart = Cart(request)
     product = get_object_or_404(Product, id=product_id)
     cart.remove(product)
@@ -25,19 +31,27 @@ def cart_remove(request, product_id):
 
 @require_POST
 def cart_clear(request):
+    '''
+    Clear all items from the cart.
+    '''
     cart = Cart(request)
     cart.clear()
     return redirect('cart:cart_detail')
 
 def cart_detail(request):
+    '''
+    Display the contents of the cart.
+    '''
     cart = Cart(request)
     is_empty = len(cart) == 0
     for item in cart:
         item['update_quantity_form'] = CartAddProductForm(initial={'quantity': item['quantity'], 'override': True})
     return render(request, 'cart/cart.html', {'cart': cart, 'is_empty': is_empty})
 
-
 def checkout(request):
+    '''
+    Handle the checkout process.
+    '''
     cart = Cart(request)
     if request.method == 'POST':
         form = CheckoutForm(request.POST)
@@ -68,4 +82,7 @@ def checkout(request):
     return render(request, 'cart/checkout.html', {'cart': cart, 'form': form,})
 
 def confirmation(request):
+    '''
+    Display the order confirmation page.
+    '''
     return render(request, 'cart/confirmation.html')
