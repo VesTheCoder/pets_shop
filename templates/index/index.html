@@ -17,15 +17,14 @@
             </div>
             <div class="col-xl-5 col-lg-5 col-md-5 col-sm-8">
               <div class="hero__caption">
-                <span data-animation="fadeInRight" data-delay=".4s"
-                  >Up to 90% Discounts!</span
-                >
+                <span data-animation="fadeInRight" data-delay=".4s">
+                  {{ index_text.hero.discount }}</span>
                 <h1 data-animation="fadeInRight" data-delay=".6s">
-                  Loved ones <br />
-                  Collection
+                  {{ index_text.hero.title_1 }} <br />
+                  {{ index_text.hero.title_2 }}
                 </h1>
                 <p data-animation="fadeInRight" data-delay=".8s">
-                  Best Cloth Collection By 2024!
+                  {{ index_text.hero.subtitle }}
                 </p>
                 <!-- Hero-btn -->
                 <div
@@ -33,7 +32,7 @@
                   data-animation="fadeInRight"
                   data-delay="1s"
                 >
-                  <a href="{% url 'product_list' %}" class="btn hero-btn">Shop Now</a>
+                  <a href="{% url 'product_list' %}" class="btn hero-btn">{{ index_text.hero.button }}</a>
                 </div>
               </div>
             </div>
@@ -52,9 +51,9 @@
         <!-- Left content -->
         <div class="col-xl-4 col-lg-4 col-md-6">
           <div class="best-left-cap">
-            <h2>Placeholder text</h2>
-            <p>Placeholder text.</p>
-            <a href="{% url 'product_list' %}" class="btn shop1-btn">Shop Now</a>
+            <h2>{{ index_text.best_collection.left.title }}</h2>
+            <p>{{ index_text.best_collection.left.description }}</p>
+            <a href="{% url 'product_list' %}" class="btn shop1-btn">{{ index_text.best_collection.left.button }}</a>
           </div>
           <div class="best-left-img mb-30 d-none d-sm-block">
             <img src="{% static 'img/collection/collection1.png' %}" alt="" />
@@ -72,8 +71,7 @@
             <div class="best-single mb-30">
               <div class="single-cap">
                 <h4>
-                  Placeholder<br />
-                  Text
+                  {{ index_text.best_collection.right.item1.title|linebreaksbr }}
                 </h4>
               </div>
               <div class="single-img">
@@ -87,7 +85,7 @@
           <div class="best-right-cap">
             <div class="best-single mb-30">
               <div class="single-cap active">
-                <h4>Placeholder<br />Text</h4>
+                <h4>{{ index_text.best_collection.right.item2.title|linebreaksbr }}</h4>
               </div>
               <div class="single-img">
                 <img
@@ -101,8 +99,7 @@
             <div class="best-single mb-30">
               <div class="single-cap">
                 <h4>
-                  Placeholder<br />
-                  Text
+                  {{ index_text.best_collection.right.item3.title|linebreaksbr }}
                 </h4>
               </div>
               <div class="single-img">
@@ -152,17 +149,16 @@
           </div>
           <div class="col-xl-2 col-lg-2 col-md-2 d-none d-lg-block">
             <div class="vertical-text">
-              <span>King</span>
+              <span>{{ index_text.best_product.vertical_text }}</span>
             </div>
           </div>
           <div class="col-xl-8 col-lg-8">
             <div class="best-product-caption">
               <h2>
-                Placeholder<br />
-                Text
+                {{ index_text.best_product.title|linebreaksbr }}
               </h2>
-              <p>Placeholder text.</p>
-              <a href="{% url 'product_list' %}" class="black-btn">Shop Now</a>
+              <p>{{ index_text.best_product.description }}</p>
+              <a href="{% url 'product_list' %}" class="black-btn">{{ index_text.best_product.button }}</a>
             </div>
           </div>
         </div>
@@ -185,16 +181,16 @@
         <div class="row d-flex align-items-center">
           <div class="col-xl-5 col-lg-5 col-md-6 offset-xl-1 offset-lg-1">
             <div class="latest-caption">
-              <h2>Get Our<br />Latest Offers & News</h2>
-              <p>Subscribe for the news letter</p>
+              <h2>{{ email_sub_text_1|linebreaksbr }}</h2>
+              <p>{{ email_sub_text_2 }}</p>
             </div>
           </div>
           <div class="col-xl-5 col-lg-5 col-md-6">
             <div class="latest-subscribe">
               <form action="{% url 'subscribe' %}" method="POST" id="subscribe-form">
                 {% csrf_token %}
-                <input type="email" id="email-input" placeholder="Your email here" />
-                <button type="button" id="subscribe-button">Subscribe</button>
+                <input type="email" id="email-input" placeholder="{{ email_sub_form_placeholder }}" />
+                <button type="button" id="subscribe-button">{{ email_sub_button_text }}</button>
               </form>
               <div id="subscription-message" class="subscription-message"></div>
             </div>
@@ -215,22 +211,22 @@
         <div class="col-xl-3 col-lg-3 col-md-6">
           <div class="single-method mb-40">
             <i class="ti-package"></i>
-            <h6>Free Shipping Method</h6>
-            <p>Placeholder text 69</p>
+            <h6>{{ index_text.shop_method.shipping.title }}</h6>
+            <p>{{ index_text.shop_method.shipping.description }}</p>
           </div>
         </div>
         <div class="col-xl-3 col-lg-3 col-md-6">
           <div class="single-method mb-40">
             <i class="ti-unlock"></i>
-            <h6>Secure Payment System</h6>
-            <p>Placeholder text 69</p>
+            <h6>{{ index_text.shop_method.payment.title }}</h6>
+            <p>{{ index_text.shop_method.payment.description }}</p>
           </div>
         </div>
         <div class="col-xl-3 col-lg-3 col-md-6">
           <div class="single-method mb-40">
             <i class="ti-reload"></i>
-            <h6>30 Full Refund</h6>
-            <p>Placeholder text 69</p>
+            <h6>{{ index_text.shop_method.refund.title }}</h6>
+            <p>{{ index_text.shop_method.refund.description }}</p>
           </div>
         </div>
       </div>

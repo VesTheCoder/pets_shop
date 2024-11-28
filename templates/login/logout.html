@@ -10,7 +10,7 @@
       <div class="row">
         <div class="col-xl-12">
           <div class="hero-cap text-center">
-            <h2>Logout page</h2>
+            <h2>{{ logout_text.page_title }}</h2>
           </div>
         </div>
       </div>
@@ -21,11 +21,11 @@
 
 <section class="user-area">
   <div class="user-area-content">
-    <h3>Great, you've just logged out!</h3>
-    <h5>Unfortunately, I had no HTML template for user member area, so this is just a text.</h5>
-    <h5>What can you do?</h5> 
+    <h3>{{ logout_text.content.title }}</h3>
+    <h5>{{ logout_text.content.subtitle }}</h5>
+    <h5>{{ logout_text.content.what_next }}</h5> 
     <p>
-      <a href="{% url 'login' %}" class="login-btn">LOGIN AGAIN</a>
+      <a href="{% url 'login' %}" class="login-btn">{{ logout_text.content.login_button }}</a>
     </p>
   </div>
 </section>

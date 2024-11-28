@@ -15,7 +15,7 @@
               </div>
               <div class="footer-tittle">
                 <div class="footer-pera">
-                  <p>Only what your loved ones would like.</p>
+                  <p>{{ footer_text.company_slogan }}</p>
                 </div>
               </div>
             </div>
@@ -24,10 +24,10 @@
         <div class="col-xl-2 col-lg-3 col-md-3 col-sm-5">
           <div class="single-footer-caption mb-50">
             <div class="footer-tittle">
-              <h4>Quick Links</h4>
+              <h4>{{ footer_text.quick_links_title }}</h4>
               <ul>
-                <li><a href="{% url 'about' %}">About Us</a></li>
-                <li><a href="{% url 'contact' %}">Contact Us</a></li>
+                <li><a href="{% url 'about' %}">{{ footer_text.quick_links.about }}</a></li>
+                <li><a href="{% url 'contact' %}">{{ footer_text.quick_links.contact }}</a></li>
               </ul>
             </div>
           </div>
@@ -35,12 +35,12 @@
         <div class="col-xl-3 col-lg-3 col-md-5 col-sm-7">
           <div class="single-footer-caption mb-50">
             <div class="footer-tittle">
-              <h4>Support</h4>
+              <h4>{{ footer_text.support_title }}</h4>
               <ul>
                 <li>
-                  <a href="{% url 'contact' %}">Frequently Asked Questions</a>
+                  <a href="{% url 'contact' %}">{{ footer_text.support_links.faq }}</a>
                 </li>
-                <li><a href="{% url 'contact' %}">Terms & Conditions</a></li>
+                <li><a href="{% url 'contact' %}">{{ footer_text.support_links.terms }}</a></li>
               </ul>
             </div>
           </div>

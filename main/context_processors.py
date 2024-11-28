@@ -24,3 +24,5 @@ def shop_contact(request):
     '''
     contact_info = ShopContact.objects.first()
     return {'shop_contact': contact_info}
+
+

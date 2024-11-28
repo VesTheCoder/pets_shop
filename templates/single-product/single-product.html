@@ -10,7 +10,7 @@
       <div class="row">
         <div class="col-xl-12">
           <div class="hero-cap text-center">
-            <h2>product Details</h2>
+            <h2>{{ single_product_text.page_title }}</h2>
           </div>
         </div>
       </div>
@@ -46,13 +46,13 @@
             <ul style="list-style: none; padding: 0">
               {% if product.is_discounted and product.discount_price %}
               <li style="text-decoration: line-through; color: red">
-                ${{ product.price }}
+                {{ product.currency.symbol }}{{ product.price }}
               </li>
               <li style="font-weight: bold">
-                ${{ product.get_discounted_price }}
+                {{ product.currency.symbol }}{{ product.get_discounted_price }}
               </li>
               {% else %}
-              <li style="font-weight: bold">${{ product.price }}</li>
+              <li style="font-weight: bold">{{ product.currency.symbol }}{{ product.price }}</li>
               {% endif %}
             </ul>
           </div>
@@ -61,7 +61,7 @@
             <form method="post" action="{% url 'cart:cart_add' product.id %}">
               {% csrf_token %}
               <div class="product_count_area">
-                <p>Quantity</p>
+                <p>{{ single_product_text.quantity.label }}</p>
                 <div class="product_count d-inline-block">
                   <span class="product_count_item inumber-decrement">
                     <i class="ti-minus"></i>
@@ -71,8 +71,8 @@
                     name="quantity"
                     value="1"
                     class="product_count_item input-number"
-                    min="1"
-                    max="20"
+                    min="{{ single_product_text.quantity.min }}"
+                    max="{{ single_product_text.quantity.max }}"
                     oninput="limitQuantity(this)"
                   />
                   <span class="product_count_item number-increment">
@@ -82,7 +82,7 @@
               </div>
               
               <div class="add_to_cart mt-3">
-                <button type="submit" class="btn_3">add to cart</button>
+                <button type="submit" class="btn_3">{{ single_product_text.cart.add_button }}</button>
               </div>
               
               {{ form.override }}
@@ -100,15 +100,11 @@
     <div class="row justify-content-center">
       <div class="col-lg-8">
         <div class="subscribe_part_content">
-          <h2>Get promotions & updates!</h2>
-          <p>
-            Seamlessly empower fully researched growth strategies and
-            interoperable internal or “organic” sources credibly innovate
-            granular internal .
-          </p>
+          <h2>{{ email_sub_text_1_var2 }}</h2>
+          <p>{{ email_sub_text_2_var2 }}</p>
           <div class="subscribe_form">
-            <input type="email" placeholder="Enter your mail" />
-            <a href="#" class="btn_1">Subscribe</a>
+            <input type="email" placeholder="{{ email_sub_form_placeholder }}" />
+            <a href="#" class="btn_1">{{ email_sub_button_text }}</a>
           </div>
         </div>
       </div>

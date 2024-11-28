@@ -1,5 +1,8 @@
 from django.contrib import admin
-from .models import Category, AnimalType, Product, Review, Subscription, ShopContact, ProductImage, ContactRequest
+from .models import (
+    Category, AnimalType, Product, Review, Subscription, 
+    ShopContact, ProductImage, ContactRequest, Currency
+)
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
@@ -32,13 +35,13 @@ class ProductAdmin(admin.ModelAdmin):
     '''
     Admin configuration for the Product model.
     '''
-    list_display = ('name', 'category', 'is_discounted', 'price', 'discount_price', 'available', 'created_at', 'updated_at')
-    list_editable = ('is_discounted', 'price', 'discount_price', 'available')
+    list_display = ('name', 'category', 'is_discounted', 'price', 'currency', 'discount_price', 'available', 'created_at', 'updated_at')
+    list_editable = ('is_discounted', 'price', 'discount_price', 'available', 'currency')
     list_filter = ('category', 'animal_types', 'is_discounted', 'available', 'created_at', 'updated_at')
     search_fields = ('name', 'description')
     prepopulated_fields = {'slug': ('name',)}
     filter_horizontal = ('animal_types',)
-    autocomplete_fields = ['category']
+    autocomplete_fields = ['category', 'currency']
     inlines = [ProductImageInline]
 
 @admin.register(Review)
@@ -88,3 +91,14 @@ class ContactRequestAdmin(admin.ModelAdmin):
             'classes': ('collapse',)
         }),
     )
+
+@admin.register(Currency)
+class CurrencyAdmin(admin.ModelAdmin):
+    '''
+    Admin configuration for the Currency model.
+    '''
+    list_display = ('code', 'symbol', 'is_default', 'created_at', 'updated_at')
+    list_editable = ('is_default',)
+    search_fields = ('code', 'symbol')
+    list_filter = ('is_default', 'created_at', 'updated_at')
+    ordering = ('-is_default', 'code')

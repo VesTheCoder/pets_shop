@@ -19,11 +19,11 @@
               <div class="main-menu f-right d-none d-lg-block">
                 <nav>
                   <ul id="navigation">
-                    <li><a href="{% url 'index' %}">Home</a></li> 
-                    <li><a href="{% url 'product_list' %}">Shop</a></li>
-                    <li><a href="{% url 'about' %}">About Us</a></li>
-                    <li><a href="{% url 'contact' %}">Contact</a></li>
-                    <li class="mobile-only"><a href="{% url 'user_account' %}">Account</a></li>
+                    <li><a href="{% url 'index' %}">{{ home }}</a></li> 
+                    <li><a href="{% url 'product_list' %}">{{ shop }}</a></li>
+                    <li><a href="{% url 'about' %}">{{ about }}</a></li>
+                    <li><a href="{% url 'contact' %}">{{ contact }}</a></li>
+                    <li class="mobile-only"><a href="{% url 'user_account' %}">{{ account }}</a></li>
                   </ul>
                 </nav>
               </div>
@@ -38,7 +38,7 @@
                         <input
                             type="text"
                             name="search"
-                            placeholder="Search products"
+                            placeholder="{{ search_placeholder }}"
                             value="{{ search_request }}"
                         />
                         <button type="submit" class="search-icon">
@@ -54,7 +54,7 @@
                     </a>
                   </div>
                 </li>
-                <li class="d-none d-lg-block"> <a href="{% url 'user_account' %}" class="btn header-btn">Account</a></li>
+                <li class="d-none d-lg-block"> <a href="{% url 'user_account' %}" class="btn header-btn">{{ account }}</a></li>
               </ul>
             </div>
             <!-- Mobile Menu -->

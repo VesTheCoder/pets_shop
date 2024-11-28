@@ -10,7 +10,7 @@
       <div class="row">
         <div class="col-xl-12">
           <div class="hero-cap text-center">
-            <h2>Contact Us</h2>
+            <h2>{{ contact_text.page_title }}</h2>
           </div>
         </div>
       </div>
@@ -24,7 +24,7 @@
   <div class="container">
     <div class="row">
       <div class="col-12">
-        <h2 class="contact-title">Get in Touch</h2>
+        <h2 class="contact-title">{{ contact_text.section_title }}</h2>
       </div>
       <!-- ================ contact form start ================= -->
       <div class="col-lg-8">
@@ -45,7 +45,7 @@
                   id="message"
                   cols="30"
                   rows="9"
-                  placeholder="Enter Message"
+                  placeholder="{{ contact_text.form.message_placeholder }}"
                 ></textarea>
               </div>
             </div>
@@ -56,7 +56,7 @@
                   name="name"
                   id="name"
                   type="text"
-                  placeholder="Enter your name"
+                  placeholder="{{ contact_text.form.name_placeholder }}"
                 />
               </div>
             </div>
@@ -67,7 +67,7 @@
                   name="email"
                   id="email"
                   type="email"
-                  placeholder="Email"
+                  placeholder="{{ contact_text.form.email_placeholder }}"
                 />
               </div>
             </div>
@@ -78,14 +78,14 @@
                   name="subject"
                   id="subject"
                   type="text"
-                  placeholder="Enter Subject"
+                  placeholder="{{ contact_text.form.subject_placeholder }}"
                 />
               </div>
             </div>
           </div>
           <div class="form-group mt-3">
             <button type="button" class="button button-contactForm boxed-btn" id="send-button">
-              Send
+              {{ contact_text.form.button_text }}
             </button>
           </div>
           <div id="contact-message" class="contact-message"></div>
@@ -111,14 +111,14 @@
                 <span class="contact-info__icon"><i class="ti-email"></i></span>
                 <div class="media-body">
                     <h3>{{ shop_contact.email }}</h3>
-                    <p>Send us your query anytime!</p>
+                    <p>{{ contact_text.info.email_subtitle }}</p>
                 </div>
             </div>
         {% else %}
             <div class="media contact-info">
               <span class="contact-info__icon"><i class="ti-home"></i></span>
               <div class="media-body">
-                  <p>We don't have no contact information. Gerara here man!</p>
+                  <p>{{ contact_text.info.no_contact_message }}</p>
               </div>
             </div>
         {% endif %}

@@ -28,6 +28,29 @@ class AnimalType(models.Model):
     def __str__(self):
         return self.name
 
+class Currency(models.Model):
+    '''
+    Represents a currency that can be used for product prices.
+    '''
+    code = models.CharField(max_length=3, unique=True, help_text='Currency code (e.g., USD, EUR)')
+    symbol = models.CharField(max_length=5, help_text='Currency symbol (e.g., $, €)')
+    is_default = models.BooleanField(default=False, help_text='Set as default currency')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name_plural = 'Currencies'
+
+    def save(self, *args, **kwargs):
+        if self.is_default:
+            Currency.objects.filter(is_default=True).update(is_default=False)
+        elif not Currency.objects.filter(is_default=True).exists():
+            self.is_default = True
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return f'{self.code} ({self.symbol})'
+
 class Product(models.Model):
     '''
     Represents a product in the shop.
@@ -41,6 +64,12 @@ class Product(models.Model):
     discount_price = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
     is_discounted = models.BooleanField(default=False)
     available = models.BooleanField(default=True)
+    currency = models.ForeignKey(
+        Currency, 
+        on_delete=models.SET_DEFAULT, 
+        default=1,  # Will point to the first currency created
+        related_name='products'
+    )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

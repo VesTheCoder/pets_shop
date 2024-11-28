@@ -100,9 +100,23 @@ class Cart(object):
 
     def get_total_price(self):
         '''
-        Calculate the total price of all items in the cart.
+        Get the total price of all items in the cart.
 
         Returns:
             The total price of all items in the cart.
         '''
         return sum(Decimal(item['price']) * item['quantity'] for item in self.cart.values())
+
+    def get_cart_currency(self):
+        '''
+        Get the currency of the first product in the cart.
+        If cart is empty, returns None.
+
+        Returns:
+            Currency object or None if cart is empty
+        '''
+        product_ids = self.cart.keys()
+        if not product_ids:
+            return None
+        first_product = Product.objects.filter(id__in=product_ids).first()
+        return first_product.currency if first_product else None

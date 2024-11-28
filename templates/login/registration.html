@@ -10,7 +10,7 @@
       <div class="row">
         <div class="col-xl-12">
           <div class="hero-cap text-center">
-            <h2>Registration</h2>
+            <h2>{{ registration_text.page_title }}</h2>
           </div>
         </div>
       </div>
@@ -27,8 +27,8 @@
         <div class="login_part_form">
           <div class="login_part_form_iner">
             <h3>
-              Welcome! <br />
-              Please fill the form to register
+              {{ registration_text.form_section.title }} <br />
+              {{ registration_text.form_section.subtitle }}
             </h3>
             <form action="{% url 'registration' %}" method="post" class="row contact_form">
               {% csrf_token %}
@@ -56,7 +56,7 @@
                   id="email"
                   name="email"
                   value="{{ form.email.value|default_if_none:'' }}"
-                  placeholder="E-mail"
+                  placeholder="{{ registration_text.form_section.email_placeholder }}"
                 />
               </div>
               <div class="col-md-12 form-group p_star">
@@ -66,7 +66,7 @@
                   id="password"
                   name="password"
                   value="{{ form.password.value|default_if_none:'' }}"
-                  placeholder="Password"
+                  placeholder="{{ registration_text.form_section.password_placeholder }}"
                 />
               </div>
               <div class="col-md-12 form-group p_star">
@@ -76,11 +76,11 @@
                   id="confirm_password"
                   name="confirm_password"
                   value="{{ form.confirm_password.value|default_if_none:'' }}"
-                  placeholder="Repeat password"
+                  placeholder="{{ registration_text.form_section.confirm_password_placeholder }}"
                 />
               </div>
               <div class="col-md-12 form-group">
-                <button type="submit" value="submit" class="btn_3">register</button>
+                <button type="submit" value="submit" class="btn_3">{{ registration_text.form_section.button }}</button>
               </div>
             </form>
           </div>

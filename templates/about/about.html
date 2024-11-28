@@ -12,7 +12,7 @@
       <div class="row">
         <div class="col-xl-12">
           <div class="hero-cap text-center">
-            <h2>About Us</h2>
+            <h2>{{ about_text.page_title }}</h2>
           </div>
         </div>
       </div>
@@ -27,11 +27,8 @@
     <div class="row justify-content-center">
       <div class="col-lg-8">
         <div class="about_us_content">
-          <h5>Our Mission</h5>
-          <h3>
-            Placeholder text placeholder text placeholder text placeholder text placeholder text placeholder text 69 
-            placeholder text placeholder text placeholder text  placeholder text placeholder text placeholder text.
-          </h3>
+          <h5>{{ about_text.mission.title }}</h5>
+          <h3>{{ about_text.mission.description }}</h3>
           <div class="about_us_video">
             <img
               src="{% static 'img/about_us_video.jpg' %}"
@@ -54,16 +51,12 @@
     <div class="row justify-content-between">
       <div class="col-lg-6">
         <div class="feature_part_tittle">
-          <h3>
-            Placeholder text 69 placeholder text 69 placeholder text
-          </h3>
+          <h3>{{ about_text.feature.title }}</h3>
         </div>
       </div>
       <div class="col-lg-5">
         <div class="feature_part_content">
-          <p>
-            Placeholder text 69 placeholder text 69 placeholder text
-          </p>
+          <p>{{ about_text.feature.description }}</p>
         </div>
       </div>
     </div>
@@ -71,25 +64,25 @@
       <div class="col-lg-3 col-sm-6">
         <div class="single_feature_part">
           <img src="{% static 'img/icon/feature_icon_1.svg' %}" alt="#" />
-          <h4>Credit Card Support</h4>
+          <h4>{{ about_text.feature.items.credit_card }}</h4>
         </div>
       </div>
       <div class="col-lg-3 col-sm-6">
         <div class="single_feature_part">
           <img src="{% static 'img/icon/feature_icon_2.svg' %}" alt="#" />
-          <h4>Online Order</h4>
+          <h4>{{ about_text.feature.items.online_order }}</h4>
         </div>
       </div>
       <div class="col-lg-3 col-sm-6">
         <div class="single_feature_part">
           <img src="{% static 'img/icon/feature_icon_3.svg' %}" alt="#" />
-          <h4>Free Delivery</h4>
+          <h4>{{ about_text.feature.items.free_delivery }}</h4>
         </div>
       </div>
       <div class="col-lg-3 col-sm-6">
         <div class="single_feature_part">
           <img src="{% static 'img/icon/feature_icon_4.svg' %}" alt="#" />
-          <h4>Product with Gift</h4>
+          <h4>{{ about_text.feature.items.gift }}</h4>
         </div>
       </div>
     </div>
@@ -125,11 +118,11 @@
     <div class="row justify-content-center">
       <div class="col-lg-8">
         <div class="subscribe_part_content">
-          <h2>Get promotions & updates!</h2>
-          <p>Only what your loved ones would love.</p>
+          <h2>{{ email_sub_text_1_var2 }}</h2>
+          <p>{{ email_sub_text_2_var2 }}</p>
           <div class="subscribe_form">
-            <input type="email" id="email-input" name="email" placeholder="Enter your email" />
-            <a href="#" class="btn_1" id="subscribe-button">Subscribe</a>
+            <input type="email" id="email-input" name="email" placeholder="{{ email_sub_form_placeholder }}" />
+            <a href="#" class="btn_1" id="subscribe-button">{{ email_sub_button_text }}</a>
           </div>
           <p id="subscription-message" style="color: red; margin-top: 10px;"></p>
         </div>

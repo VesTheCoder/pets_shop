@@ -10,7 +10,7 @@
       <div class="row">
         <div class="col-xl-12">
           <div class="hero-cap text-center">
-            <h2>product list</h2>
+            <h2>{{ product_list_text.page_title }}</h2>
           </div>
         </div>
       </div>
@@ -26,7 +26,7 @@
       <div class="col-md-4">
         <div class="product_sidebar">
           <div class="single_sedebar d-flex justify-content-center">  
-            <a href="{% url 'product_list' %}" class="btn_4" style="color: #7F627E">Clear filter</a>
+            <a href="{% url 'product_list' %}" class="btn_4" style="color: #7F627E">{{ product_list_text.filter.clear_button }}</a>
           </div>
           <div class="single_sedebar">
             <form action="{% url 'product_list' %}" method="GET">
@@ -34,7 +34,7 @@
                 style="color: #7F627E"
                 type="text"
                 name="search"
-                placeholder="{% if search_request %}{{ search_request }}{% else %}Search by name{% endif %}"
+                placeholder="{% if search_request %}{{ search_request }}{% else %}{{ product_list_text.filter.search_placeholder }}{% endif %}"
                 value="{{ search_request }}"
               />
               {% if selected_category %}<input type="hidden" name="category" value="{{ selected_category.id }}">{% endif %}
@@ -48,7 +48,7 @@
               {% if selected_category %} 
                 {{ selected_category.name }} 
               {% else%}
-                Category
+                {{ product_list_text.filter.category_default }}
               {% endif %}
                 <i class="right fas fa-caret-down"></i>
               </div>
@@ -72,7 +72,7 @@
               {% if selected_animal_type %} 
                 {{ selected_animal_type.name }} 
               {% else%}
-                Animal Type
+                {{ product_list_text.filter.animal_type_default }}
               {% endif %}
                 <i class="right fas fa-caret-down"></i>
               </div>
@@ -112,10 +112,10 @@
                 <p>
                   {% if product.is_discounted and product.discount_price %}
                   <span style="text-decoration: line-through; color: red">
-                    ${{ product.price }}
+                    {{ product.currency.symbol }}{{ product.price }}
                   </span>
-                  <span> ${{ product.discount_price }} </span>
-                  {% else %} ${{ product.price }} {% endif %}
+                  <span> {{ product.currency.symbol }}{{ product.discount_price }} </span>
+                  {% else %} {{ product.currency.symbol }}{{ product.price }} {% endif %}
                 </p>
               </div>
             </div>
@@ -123,7 +123,7 @@
           </div>
           {% if products.has_next %}
           <div class="load_more_btn text-center" id="load-more-container">
-            <button id="load-more-btn" class="btn_3" data-next-page="2">Load More</button>
+            <button id="load-more-btn" class="btn_3" data-next-page="2">{{ product_list_text.load_more.button_text }}</button>
           </div>
           {% endif %}
         </div>
@@ -161,11 +161,11 @@
     <div class="row justify-content-center">
       <div class="col-lg-8">
         <div class="subscribe_part_content">
-          <h2>Get promotions & updates!</h2>
-          <p>Only what your loved ones would love.</p>
+          <h2>{{ email_sub_text_1_var2 }}</h2>
+          <p>{{ email_sub_text_2_var2 }}</p>
           <div class="subscribe_form">
-            <input type="email" id="email-input" name="email" placeholder="Enter your email" />
-            <a href="#" class="btn_1" id="subscribe-button">Subscribe</a>
+            <input type="email" id="email-input" name="email" placeholder="{{ email_sub_form_placeholder }}" />
+            <a href="#" class="btn_1" id="subscribe-button">{{ email_sub_button_text }}</a>
           </div>
           <p id="subscription-message" style="color: red; margin-top: 10px;"></p>
         </div>

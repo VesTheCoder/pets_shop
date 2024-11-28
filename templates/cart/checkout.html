@@ -10,7 +10,7 @@
       <div class="row">
         <div class="col-xl-12">
           <div class="hero-cap text-center">
-            <h2>Checkout</h2>
+            <h2>{{ checkout_text.page_title }}</h2>
           </div>
         </div>
       </div>
@@ -27,13 +27,13 @@
         <div class="col-lg-4">
           <div class="order_box">
             <div class="col-12 d-flex justify-content-center">
-              <h2>Your Order</h2>
+              <h2>{{ checkout_text.order_summary.title }}</h2>
             </div>
             <ul class="list">
               <li>
                 <a href="#">
-                  Product
-                  <span>Total</span>
+                  {{ checkout_text.order_summary.headers.product }}
+                  <span>{{ checkout_text.order_summary.headers.total }}</span>
                 </a>
               </li>
               {% for item in cart %}
@@ -41,7 +41,7 @@
                 <a href="#">
                   {{ item.product.name }}
                   <span class="middle">x {{ item.quantity }}</span>
-                  <span class="last">${{ item.total_price }}</span>
+                  <span class="last">{{ item.product.currency.symbol }}{{ item.total_price }}</span>
                 </a>
               </li>
               {% endfor %}
@@ -49,20 +49,20 @@
             <ul class="list list_2">
               <li>
                 <a href="#">
-                  Subtotal
-                  <span>${{ cart.get_total_price }}</span>
+                  {{ checkout_text.order_summary.summary.subtotal }}
+                  <span>{{ cart.get_cart_currency.symbol }}{{ cart.get_total_price }}</span>
                 </a>
               </li>
               <li>
                 <a href="#">
-                  Shipping
-                  <span>Free</span>
+                  {{ checkout_text.order_summary.summary.shipping }}
+                  <span>{{ checkout_text.order_summary.summary.shipping_cost }}</span>
                 </a>
               </li>
               <li>
                 <a href="#">
-                  Total
-                  <span>${{ cart.get_total_price }}</span>
+                  {{ checkout_text.order_summary.summary.total }}
+                  <span>{{ cart.get_cart_currency.symbol }}{{ cart.get_total_price }}</span>
                 </a>
               </li>
             </ul>
@@ -70,7 +70,7 @@
         </div>
         <div class="col-lg-8">
           <div class="col-12 d-flex justify-content-center">
-            <h3 style="margin-top: 30px;">Shipping Details</h3>
+            <h3 style="margin-top: 30px;">{{ checkout_text.shipping_details.title }}</h3>
           </div>
           <form
             class="row contact_form"
@@ -80,10 +80,10 @@
           >
             {% csrf_token %}
             <div class="col-md-6 form-group">
-              <input type="text" class="form-control" id="first" name="first_name" placeholder="First name *" required />
+              <input type="text" class="form-control" id="first" name="first_name" placeholder="{{ checkout_text.shipping_details.form.first_name.placeholder }}" required />
             </div>
             <div class="col-md-6 form-group">
-              <input type="text" class="form-control" id="last" name="last_name" placeholder="Last name *" required />
+              <input type="text" class="form-control" id="last" name="last_name" placeholder="{{ checkout_text.shipping_details.form.last_name.placeholder }}" required />
             </div>
             <div class="col-md-12 form-group">
               <input
@@ -91,7 +91,7 @@
                 class="form-control"
                 id="company"
                 name="company"
-                placeholder="Company name"
+                placeholder="{{ checkout_text.shipping_details.form.company.placeholder }}"
               />
             </div>
             <div class="col-md-6 form-group">
@@ -100,10 +100,9 @@
                 class="form-control"
                 id="number"
                 name="phone"
-                placeholder="Phone number *"
+                placeholder="{{ checkout_text.shipping_details.form.phone.placeholder }}"
                 required
               />
-              
             </div>
             <div class="col-md-6 form-group">
               <input
@@ -111,30 +110,26 @@
                 class="form-control"
                 id="email"
                 name="email"
-                placeholder="Email *"
+                placeholder="{{ checkout_text.shipping_details.form.email.placeholder }}"
               />
-              
             </div>
             <div class="col-md-12 form-group">
-              <input type="text" class="form-control" id="country" name="country" placeholder="Country *" required />
-              
+              <input type="text" class="form-control" id="country" name="country" placeholder="{{ checkout_text.shipping_details.form.country.placeholder }}" required />
             </div>
             <div class="col-md-12 form-group">
-              <input type="text" class="form-control" id="add1" name="address_line_1" placeholder="Address *" required />
-              
+              <input type="text" class="form-control" id="add1" name="address_line_1" placeholder="{{ checkout_text.shipping_details.form.address_1.placeholder }}" required />
             </div>
             <div class="col-md-12 form-group">
-              <input type="text" class="form-control" id="add2" name="address_line_2" placeholder="Apt, suite, unit, floor, etc." />
+              <input type="text" class="form-control" id="add2" name="address_line_2" placeholder="{{ checkout_text.shipping_details.form.address_2.placeholder }}" />
             </div>
             <div class="col-md-12 form-group">
-              <input type="text" class="form-control" id="city" name="city" placeholder="City/Town *" required />
-             
+              <input type="text" class="form-control" id="city" name="city" placeholder="{{ checkout_text.shipping_details.form.city.placeholder }}" required />
             </div>
             <div class="col-md-12 form-group">
-              <input type="text" class="form-control" id="zip" name="zip_code" placeholder="Postcode/ZIP *" required />
+              <input type="text" class="form-control" id="zip" name="zip_code" placeholder="{{ checkout_text.shipping_details.form.zip.placeholder }}" required />
             </div>
             <div class="col-md-12 form-group">
-              <textarea class="form-control" name="order_notes" id="message" rows="1" placeholder="Order Notes"></textarea>
+              <textarea class="form-control" name="order_notes" id="message" rows="1" placeholder="{{ checkout_text.shipping_details.form.notes.placeholder }}"></textarea>
             </div>
             {% if form.errors %}
               <div class="alert alert-danger">
@@ -148,7 +143,7 @@
               </div>
             {% endif %}
             <div class="col-12 d-flex justify-content-center">
-              <button type="submit" class="btn_3">Finalize</button>
+              <button type="submit" class="btn_3">{{ checkout_text.shipping_details.button }}</button>
           </div>
           </form>
         </div>

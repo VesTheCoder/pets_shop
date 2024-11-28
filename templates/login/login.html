@@ -10,7 +10,7 @@
       <div class="row">
         <div class="col-xl-12">
           <div class="hero-cap text-center">
-            <h2>Login</h2>
+            <h2>{{ login_text.page_title }}</h2>
           </div>
         </div>
       </div>
@@ -26,12 +26,9 @@
       <div class="col-lg-6 col-md-6">
         <div class="login_part_text text-center">
           <div class="login_part_text_iner">
-            <h2>New to our Shop?</h2>
-            <p>
-              There are advances being made in science and technology everyday,
-              and a good example of this is you.
-            </p>
-            <a href="{% url 'registration' %}" class="btn_3">Create an Account</a>
+            <h2>{{ login_text.signup_section.title }}</h2>
+            <p>{{ login_text.signup_section.subtitle }}</p>
+            <a href="{% url 'registration' %}" class="btn_3">{{ login_text.signup_section.button }}</a>
           </div>
         </div>
       </div>
@@ -39,8 +36,8 @@
         <div class="login_part_form">
           <div class="login_part_form_iner">
             <h3>
-              Welcome Back ! <br />
-              Please Sign in now
+              {{ login_text.signin_section.title }} <br />
+              {{ login_text.signin_section.subtitle }}
             </h3>
             <form action="{% url 'login' %}" method="post" class="row contact_form">
               {% csrf_token %}
@@ -68,7 +65,7 @@
                   id="username"
                   name="username"
                   value="{{ form.username.value|default_if_none:'' }}"
-                  placeholder="E-mail"
+                  placeholder="{{ login_text.signin_section.email_placeholder }}"
                 />
               </div>
               <div class="col-md-12 form-group p_star">
@@ -78,12 +75,12 @@
                   id="password"
                   name="password"
                   value="{{ form.password.value|default_if_none:'' }}"
-                  placeholder="Password"
+                  placeholder="{{ login_text.signin_section.password_placeholder }}"
                 />
               </div>
               <div class="col-md-12 form-group">
                 <button type="submit" value="submit" class="btn_3">
-                  log in
+                  {{ login_text.signin_section.button }}
                 </button>
               </div>
             </form>
